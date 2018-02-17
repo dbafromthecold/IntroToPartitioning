@@ -3,58 +3,6 @@ GO
 
 
 /****************************************************************************************
---Create archive table
-*****************************************************************************************/
-
-
-DROP TABLE IF EXISTS dbo.PartitionedTable_Archive
-
-CREATE TABLE dbo.PartitionedTable_Archive
-(ID INT IDENTITY(1,1),
- ColA VARCHAR(10),
- ColB VARCHAR(10),
- CreatedDate DATE)
- ON PS_PartitionedTable(CreatedDate);
-
-
-CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable_Archive] ON dbo.PartitionedTable_Archive
- (CreatedDate,ID) 
-ON PS_PartitionedTable(CreatedDate);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable_Archive] ON dbo.PartitionedTable_Archive
- (ColA) 
-ON PS_PartitionedTable(CreatedDate);
-GO
-
-
-/****************************************************************************************
---Create staging table
-*****************************************************************************************/
-
-
-DROP TABLE IF EXISTS dbo.PartitionedTable_Staging
-
-CREATE TABLE dbo.PartitionedTable_Staging
-(ID INT IDENTITY(1,1),
- ColA VARCHAR(10),
- ColB VARCHAR(10),
- CreatedDate DATE)
- ON PS_PartitionedTable(CreatedDate);
-
-
-CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable_Staging] ON dbo.PartitionedTable_Staging
- (CreatedDate,ID) 
-ON PS_PartitionedTable(CreatedDate);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable_Staging] ON dbo.PartitionedTable_Staging
- (ColA) 
-ON PS_PartitionedTable(CreatedDate);
-GO
-
-
-/****************************************************************************************
 --Check partitions
 *****************************************************************************************/
 
@@ -82,10 +30,62 @@ LEFT OUTER JOIN
 WHERE 
 	i.type <= 1 AND a.type = 1
 AND 
-	t.name IN ('PartitionedTable','PartitionedTable_Archive','PartitionedTable_Staging')
+	t.name IN ('PartitionedTable')
 ORDER BY 
 	t.name, p.partition_number 
 		DESC;
+GO
+
+
+/****************************************************************************************
+--Create archive table
+*****************************************************************************************/
+
+
+DROP TABLE IF EXISTS dbo.PartitionedTable_Archive
+
+CREATE TABLE dbo.PartitionedTable_Archive
+(ID INT IDENTITY(1,1),
+ ColA VARCHAR(10),
+ ColB VARCHAR(10),
+ CreatedDate DATE)
+ ON [DATA1];
+
+
+CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable_Archive] ON dbo.PartitionedTable_Archive
+ (CreatedDate,ID) 
+ON [DATA1];
+GO
+
+CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable_Archive] ON dbo.PartitionedTable_Archive
+ (ColA) 
+ON [DATA1];
+GO
+
+
+/****************************************************************************************
+--Create staging table
+*****************************************************************************************/
+
+
+DROP TABLE IF EXISTS dbo.PartitionedTable_Staging
+
+CREATE TABLE dbo.PartitionedTable_Staging
+(ID INT IDENTITY(1,1),
+ ColA VARCHAR(10),
+ ColB VARCHAR(10),
+ CreatedDate DATE)
+ ON [DATA12];
+
+
+CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable_Staging] ON dbo.PartitionedTable_Staging
+ (CreatedDate,ID) 
+ON [DATA12];
+GO
+
+CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable_Staging] ON dbo.PartitionedTable_Staging
+ (ColA) 
+ON [DATA12];
 GO
 
 
@@ -102,7 +102,7 @@ GO
 
 
 /****************************************************************************************
---Check partitions
+--Check partitions & archive table
 *****************************************************************************************/
 
 
@@ -129,10 +129,14 @@ LEFT OUTER JOIN
 WHERE 
 	i.type <= 1 AND a.type = 1
 AND 
-	t.name IN ('PartitionedTable','PartitionedTable_Archive')
+	t.name IN ('PartitionedTable')
 ORDER BY 
 	t.name, p.partition_number 
 		DESC;
+GO
+
+
+SELECT COUNT(*) as [Row Count] FROM [dbo].PartitionedTable_Archive;
 GO
 
 
@@ -174,7 +178,7 @@ LEFT OUTER JOIN
 WHERE 
 	i.type <= 1 AND a.type = 1
 AND 
-	t.name IN ('PartitionedTable','PartitionedTable_Archive')
+	t.name IN ('PartitionedTable')
 ORDER BY 
 	t.name, p.partition_number 
 		DESC;
@@ -242,10 +246,14 @@ LEFT OUTER JOIN
 WHERE 
 	i.type <= 1 AND a.type = 1
 AND 
-	t.name IN ('PartitionedTable','PartitionedTable_Staging')
+	t.name IN ('PartitionedTable')
 ORDER BY 
 	t.name, p.partition_number 
 		DESC;
+GO
+
+
+SELECT COUNT(*) as [Row Count] FROM [dbo].PartitionedTable_Staging;
 GO
 
 
@@ -255,7 +263,7 @@ GO
 
 
 ALTER TABLE [dbo].PartitionedTable_Staging
-	SWITCH PARTITION 9
+	SWITCH PARTITION 1
 TO [dbo].PartitionedTable
 		PARTITION 9;
 GO
@@ -289,8 +297,12 @@ LEFT OUTER JOIN
 WHERE 
 	i.type <= 1 AND a.type = 1
 AND 
-	t.name IN ('PartitionedTable','PartitionedTable_Staging')
+	t.name IN ('PartitionedTable')
 ORDER BY 
 	t.name, p.partition_number 
 		DESC;
+GO
+
+
+SELECT COUNT(*) as [Row Count] FROM [dbo].PartitionedTable_Staging;
 GO

@@ -41,15 +41,15 @@ ORDER BY
 *****************************************************************************************/
 
 
-DROP INDEX IF EXISTS [IX_CreatedDate_PartitionedTable] ON dbo.PartitionedTable;
+DROP INDEX IF EXISTS [IX_ID_PartitionedTable] ON dbo.PartitionedTable;
 
-CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable] ON dbo.PartitionedTable
+CREATE UNIQUE CLUSTERED INDEX [IX_ID_PartitionedTable] ON dbo.PartitionedTable
  (ID) 
 ON PS_PartitionedTable(CreatedDate);
 GO
 
-CREATE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable] ON dbo.PartitionedTable
- (CreatedDate) 
+CREATE CLUSTERED INDEX [IX_ID_PartitionedTable] ON dbo.PartitionedTable
+ (ID) 
 ON PS_PartitionedTable(CreatedDate);
 GO
 
@@ -97,21 +97,10 @@ ORDER BY
 
 DBCC TRACEON(3604);
 GO
-DBCC PAGE ('PartitioningDemo',FILEID,PAGENUMBER,3);
+DBCC PAGE ('PartitioningDemo',FILEID,PAGEID,3);
 GO
 
 
-/****************************************************************************************
---Recreate clustered index
-*****************************************************************************************/
-
-
-DROP INDEX IF EXISTS [IX_CreatedDate_PartitionedTable] ON dbo.PartitionedTable;
-
-CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable] ON dbo.PartitionedTable
- (CreatedDate,ID) 
-ON PS_PartitionedTable(CreatedDate);
-GO
 
 
 /****************************************************************************************
@@ -119,14 +108,12 @@ GO
 *****************************************************************************************/
 
 
+DROP INDEX IF EXISTS [IX_ID_PartitionedTable] ON dbo.PartitionedTable;
+DROP INDEX IF EXISTS [IX_CreatedDate_PartitionedTable] ON dbo.PartitionedTable;
+
+
 CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable] ON dbo.PartitionedTable
  (ColA) 
-ON PS_PartitionedTable(CreatedDate);
-GO
-
-
-CREATE UNIQUE NONCLUSTERED INDEX [IX_ColB_PartitionedTable] ON dbo.PartitionedTable
- (ColB,ID) 
 ON PS_PartitionedTable(CreatedDate);
 GO
 
@@ -147,7 +134,35 @@ GO
 
 DBCC TRACEON(3604);
 GO
-DBCC PAGE ('PartitioningDemo',FILEID,PAGENUMBER,3);
+DBCC PAGE ('PartitioningDemo',FILEID,PAGEID,3);
+GO
+
+
+
+/****************************************************************************************
+--Recreate clustered index
+*****************************************************************************************/
+
+
+DROP INDEX IF EXISTS [IX_ID_PartitionedTable] ON dbo.PartitionedTable;
+DROP INDEX IF EXISTS [IX_CreatedDate_PartitionedTable] ON dbo.PartitionedTable;
+
+CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable] ON dbo.PartitionedTable
+ (CreatedDate,ID) 
+ON PS_PartitionedTable(CreatedDate);
+GO
+
+
+/****************************************************************************************
+--Recreate nonclustered index
+*****************************************************************************************/
+
+
+DROP INDEX IF EXISTS [IX_ColA_PartitionedTable] ON dbo.PartitionedTable;
+
+CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable] ON dbo.PartitionedTable
+ (ColA) 
+ON PS_PartitionedTable(CreatedDate);
 GO
 
 
