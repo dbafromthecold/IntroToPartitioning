@@ -75,17 +75,17 @@ CREATE TABLE dbo.PartitionedTable_Staging
  ColA VARCHAR(10),
  ColB VARCHAR(10),
  CreatedDate DATE)
- ON [DATA12];
+ ON [DATA9];
 
 
 CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable_Staging] ON dbo.PartitionedTable_Staging
  (CreatedDate,ID) 
-ON [DATA12];
+ ON [DATA9];
 GO
 
 CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable_Staging] ON dbo.PartitionedTable_Staging
  (ColA) 
-ON [DATA12];
+ ON [DATA9];
 GO
 
 
@@ -144,9 +144,10 @@ GO
 --Merge oldest partition in live table
 *****************************************************************************************/
 
+SET STATISTICS IO ON;
 
 ALTER PARTITION FUNCTION PF_PartitionedTable()
-MERGE RANGE ('VALUE');
+MERGE RANGE ('2013-01-01');
 GO
 
 
@@ -190,32 +191,40 @@ GO
 *****************************************************************************************/
 
 
-ALTER DATABASE [PartitioningDemo] ADD FILEGROUP [DATA13]
-GO
-ALTER DATABASE [PartitioningDemo] ADD FILE ( NAME = N'DATA13', FILENAME = N'C:\SQLServer\SQLData\DATA13.ndf') TO FILEGROUP [DATA13]
-GO
-
-
 ALTER PARTITION SCHEME PS_PartitionedTable
-NEXT USED [DATA13];
+NEXT USED [DATA11];
 
 ALTER PARTITION FUNCTION PF_PartitionedTable()
-SPLIT RANGE ('VALUE');
+SPLIT RANGE ('2020-01-01');
 GO
 
 
 /****************************************************************************************
---Load data into Staging table
+--Load data into Staging table and add constraint
 *****************************************************************************************/
 
-SET NOCOUNT ON;
 
-DECLARE @CurrentDate DATE = GETDATE();
+--https://stackoverflow.com/questions/9645348/how-to-insert-1000-random-dates-between-a-given-range
+SET NOCOUNT ON;
+SET STATISTICS IO OFF;
+
+DECLARE @FromDate DATE = '2018-01-01'
+DECLARE @ToDate DATE = '2018-12-31'
+
 INSERT INTO dbo.PartitionedTable_Staging
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+3,@CurrentDate));
-GO 100
+SELECT 
+    REPLICATE('A',10),
+    REPLICATE('B',10),
+    DATEADD(DAY, RAND(CHECKSUM(NEWID()))*(1+DATEDIFF(DAY, @FromDate, @ToDate)), @FromDate);
+GO 250
+
+
+
+ALTER TABLE dbo.PartitionedTable_Staging
+		ADD CONSTRAINT CreatedDate_Staging_CHECK CHECK 
+			(CreatedDate >= CONVERT(DATE,'2018-01-01') AND CreatedDate < CONVERT(DATE,'2019-01-01')
+            AND CreatedDate IS NOT NULL);
+GO
 
 
 /****************************************************************************************
@@ -246,7 +255,7 @@ LEFT OUTER JOIN
 WHERE 
 	i.type <= 1 AND a.type = 1
 AND 
-	t.name IN ('PartitionedTable')
+	t.name IN ('PartitionedTable','PartitionedTable_Staging')
 ORDER BY 
 	t.name, p.partition_number 
 		DESC;
@@ -265,7 +274,7 @@ GO
 ALTER TABLE [dbo].PartitionedTable_Staging
 	SWITCH PARTITION 1
 TO [dbo].PartitionedTable
-		PARTITION 9;
+		PARTITION 6;
 GO
 
 

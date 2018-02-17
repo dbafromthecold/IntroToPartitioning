@@ -45,7 +45,7 @@ GO
 SET STATISTICS IO ON;
 
 ALTER PARTITION FUNCTION PF_PartitionedTable()
-MERGE RANGE ('VALUE');
+MERGE RANGE ('2011-01-01');
 GO
 
 
@@ -55,7 +55,7 @@ GO
 
 
 SELECT 
-	p.partition_number, p.partition_id, 
+	p.partition_number, p.partition_id, fg.name AS [filegroup],
 	r.boundary_id, r.value AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
@@ -92,7 +92,7 @@ GO
 SET STATISTICS IO ON;
 
 ALTER PARTITION FUNCTION PF_PartitionedTable()
-MERGE RANGE ('VALUE');
+MERGE RANGE ('2012-01-01');
 GO
 
 
@@ -139,10 +139,10 @@ GO
 SET STATISTICS IO ON;
 
 ALTER PARTITION SCHEME PS_PartitionedTable
-NEXT USED [DATA11];
+NEXT USED [DATA9];
 
 ALTER PARTITION FUNCTION PF_PartitionedTable()
-SPLIT RANGE ('VALUE');
+SPLIT RANGE ('2018-01-01');
 GO
 
 
@@ -186,29 +186,19 @@ GO
 *****************************************************************************************/
 
 
+--https://stackoverflow.com/questions/9645348/how-to-insert-1000-random-dates-between-a-given-range
 SET NOCOUNT ON;
 SET STATISTICS IO OFF;
 
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+1,@CurrentDate));
-GO 200
+DECLARE @FromDate date = '2017-01-01'
+DECLARE @ToDate date = '2020-01-01'
 
-DECLARE @CurrentDate DATE = GETDATE();
 INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+2,@CurrentDate));
-GO 200
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+3,@CurrentDate));
-GO 200
+SELECT 
+    REPLICATE('A',10),
+    REPLICATE('B',10),
+    DATEADD(DAY, RAND(CHECKSUM(NEWID()))*(1+DATEDIFF(DAY, @FromDate, @ToDate)), @FromDate);
+GO 1000
 
 
 /****************************************************************************************
@@ -254,10 +244,10 @@ GO
 SET STATISTICS IO ON;
 
 ALTER PARTITION SCHEME PS_PartitionedTable
-NEXT USED [DATA12];
+NEXT USED [DATA10];
 
 ALTER PARTITION FUNCTION PF_PartitionedTable()
-SPLIT RANGE ('VALUE');
+SPLIT RANGE ('2019-01-01');
 GO
 
 
@@ -302,7 +292,7 @@ GO
 *****************************************************************************************/
 
 
-TRUNCATE TABLE dbo.PartitionedTable WITH (PARTITIONS (10));
+TRUNCATE TABLE dbo.PartitionedTable WITH (PARTITIONS (7));
 GO
 
 
@@ -312,7 +302,7 @@ GO
 
 
 SELECT 
-	p.partition_number, p.partition_id, 
+	p.partition_number, p.partition_id, fg.name AS [filegroup],
 	r.boundary_id, r.value AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
@@ -338,4 +328,13 @@ AND
 ORDER BY 
 	p.partition_number 
 		DESC;
+GO
+
+
+/****************************************************************************************
+--Truncate open partition
+*****************************************************************************************/
+
+
+TRUNCATE TABLE dbo.PartitionedTable WITH (PARTITIONS (8));
 GO

@@ -52,18 +52,15 @@ DECLARE @CurrentDate DATE = GETDATE();
 
 CREATE PARTITION FUNCTION PF_PartitionedTable(DATE)
 	   AS RANGE RIGHT 
-    FOR VALUES (DATEADD(dd,-7,@CurrentDate),
-				DATEADD(dd,-6,@CurrentDate),DATEADD(dd,-5,@CurrentDate),
-				DATEADD(dd,-4,@CurrentDate),DATEADD(dd,-3,@CurrentDate),
-				DATEADD(dd,-2,@CurrentDate),DATEADD(dd,-1,@CurrentDate),
-                @CurrentDate,
-                DATEADD(dd,+1,@CurrentDate));
+    FOR VALUES ('2011-01-01','2012-01-01','2013-01-01',
+                '2014-01-01','2015-01-01','2016-01-01',
+                '2017-01-01');
 GO
 
 
 CREATE PARTITION SCHEME PS_PartitionedTable
     AS PARTITION PF_PartitionedTable
-TO ([DATA1],[DATA2],[DATA3],[DATA4],[DATA5],[DATA6],[DATA7],[DATA8],[DATA9],[DATA10]);
+TO ([DATA1],[DATA2],[DATA3],[DATA4],[DATA5],[DATA6],[DATA7],[DATA8]);
 GO
 
 
@@ -86,57 +83,19 @@ GO
 *****************************************************************************************/
 
 
+--https://stackoverflow.com/questions/9645348/how-to-insert-1000-random-dates-between-a-given-range
 SET NOCOUNT ON;
 SET STATISTICS IO OFF;
 
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-6,@CurrentDate));
-GO 100
+DECLARE @FromDate date = '2012-01-01'
+DECLARE @ToDate date = '2016-01-01'
 
-DECLARE @CurrentDate DATE = GETDATE();
 INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-5,@CurrentDate));
-GO 100
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-4,@CurrentDate));
-GO 100
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-3,@CurrentDate));
-GO 100
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-2,@CurrentDate));
-GO 100
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-1,@CurrentDate));
-GO 100
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),@CurrentDate);
-GO 50
+SELECT 
+    REPLICATE('A',10),
+    REPLICATE('B',10),
+    DATEADD(DAY, RAND(CHECKSUM(NEWID()))*(1+DATEDIFF(DAY, @FromDate, @ToDate)), @FromDate);
+GO 1000
 
 
 /****************************************************************************************
@@ -146,7 +105,7 @@ GO 50
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN

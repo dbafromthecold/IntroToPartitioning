@@ -3,32 +3,6 @@ GO
 
 
 /****************************************************************************************
---Create switch table
-*****************************************************************************************/
-
-
-DROP TABLE IF EXISTS dbo.PartitionedTable_Switch
-
-CREATE TABLE dbo.PartitionedTable_Switch
-(ID INT IDENTITY(1,1),
- ColA VARCHAR(10),
- ColB VARCHAR(10),
- CreatedDate DATE)
- ON [DATA1];
-
-
-CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable_Switch] ON dbo.PartitionedTable_Switch
- (CreatedDate,ID) 
-ON [DATA1];
-GO
-
-CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable_Switch] ON dbo.PartitionedTable_Switch
- (ColA) 
-ON [DATA1];
-GO
-
-
-/****************************************************************************************
 --Check partitions
 *****************************************************************************************/
 
@@ -64,9 +38,36 @@ GO
 
 
 /****************************************************************************************
+--Create switch table
+*****************************************************************************************/
+
+
+DROP TABLE IF EXISTS dbo.PartitionedTable_Switch
+
+CREATE TABLE dbo.PartitionedTable_Switch
+(ID INT IDENTITY(1,1),
+ ColA VARCHAR(10),
+ ColB VARCHAR(10),
+ CreatedDate DATE)
+ ON [DATA1];
+
+
+CREATE UNIQUE CLUSTERED INDEX [IX_CreatedDate_PartitionedTable_Switch] ON dbo.PartitionedTable_Switch
+ (CreatedDate,ID) 
+ON [DATA1];
+GO
+
+CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable_Switch] ON dbo.PartitionedTable_Switch
+ (ColA) 
+ON [DATA1];
+GO
+
+
+/****************************************************************************************
 --Switch partitions
 *****************************************************************************************/
 
+SET STATISTICS IO ON;
 
 ALTER TABLE [dbo].PartitionedTable
 	SWITCH PARTITION 1
@@ -171,7 +172,7 @@ GO
 
 ALTER TABLE dbo.PartitionedTable_Switch 
 		ADD CONSTRAINT CreatedDate_CHECK CHECK 
-			(CreatedDate >= 'VALUE' AND CreatedDate < 'VALUE');
+			(CreatedDate < '2013-01-01');
 GO
 
 
