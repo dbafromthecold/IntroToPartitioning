@@ -9,7 +9,7 @@ GO
 
 SELECT 
 	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -108,7 +108,7 @@ GO
 
 SELECT 
 	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -158,7 +158,7 @@ GO
 
 SELECT 
 	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -234,7 +234,7 @@ GO
 
 SELECT 
 	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -285,7 +285,7 @@ GO
 
 SELECT 
 	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN

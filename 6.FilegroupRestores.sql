@@ -23,7 +23,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -119,11 +119,6 @@ BACKUP DATABASE [PartitioningDemo]
 TO DISK = 'C:\SQLServer\SQLBackup\PartitioningDemo_DATA12.bak';
 GO
 
-BACKUP DATABASE [PartitioningDemo]
-   FILEGROUP = 'DATA13'
-TO DISK = 'C:\SQLServer\SQLBackup\PartitioningDemo_DATA13.bak';
-GO
-
 
 /****************************************************************************************
 --Take transaction log backup
@@ -136,14 +131,49 @@ GO
 
 
 /****************************************************************************************
---Wipe some data
+--Check the data
 *****************************************************************************************/
 
 
 USE [PartitioningDemo];
 GO
 
-TRUNCATE TABLE dbo.PartitionedTable WITH (PARTITIONS (9));
+SELECT 
+	p.partition_number, p.partition_id, fg.name AS [filegroup],
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
+FROM 
+	sys.tables AS t
+INNER JOIN
+	sys.indexes AS i ON t.object_id = i.object_id
+INNER JOIN
+	sys.partitions AS p ON i.object_id = p.object_id AND i.index_id = p.index_id 
+INNER JOIN 
+    sys.allocation_units a ON a.container_id = p.hobt_id 
+INNER JOIN 
+    sys.filegroups fg ON fg.data_space_id = a.data_space_id 
+INNER JOIN
+	sys.partition_schemes AS s ON i.data_space_id = s.data_space_id
+INNER JOIN
+	sys.partition_functions AS f ON s.function_id = f.function_id
+LEFT OUTER JOIN 
+	sys.partition_range_values AS r ON f.function_id = r.function_id 
+									AND r.boundary_id = p.partition_number
+WHERE 
+	i.type <= 1 AND a.type = 1
+AND 
+	t.name = 'PartitionedTable'
+ORDER BY 
+	p.partition_number 
+		DESC;
+GO
+
+
+/****************************************************************************************
+--Wipe some data
+*****************************************************************************************/
+
+
+TRUNCATE TABLE dbo.PartitionedTable WITH (PARTITIONS (6));
 GO
 
 
@@ -154,7 +184,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -208,8 +238,8 @@ GO
 
 
 RESTORE DATABASE [PartitioningDemo]
-   FILEGROUP = 'DATA12'
-   FROM DISK = 'C:\SQLServer\SQLBackup\PartitioningDemo_DATA12.bak'
+   FILEGROUP = 'DATA9'
+   FROM DISK = 'C:\SQLServer\SQLBackup\PartitioningDemo_DATA9.bak'
    WITH NORECOVERY;
 GO
 
@@ -235,7 +265,7 @@ GO
 
 
 /****************************************************************************************
---Check the data in the table
+--Check the partitions
 *****************************************************************************************/
 
 
@@ -244,7 +274,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -272,13 +302,17 @@ ORDER BY
 GO
 
 
-DECLARE @CurrentDate DATE = GETDATE();
+/****************************************************************************************
+--Try selecting the data in the table
+*****************************************************************************************/
+
+
 SELECT * FROM dbo.PartitionedTable
-WHERE CreatedDate = DATEADD(dd,+3,@CurrentDate)
+WHERE CreatedDate >= '2018-01-01' AND CreatedDate < '2019-01-01'
 GO
 
 
-DECLARE @CurrentDate DATE = GETDATE();
+
 SELECT * FROM dbo.PartitionedTable
-WHERE CreatedDate = DATEADD(dd,-1,@CurrentDate)
+WHERE CreatedDate >= '2017-01-01' AND CreatedDate < '2018-01-01'
 GO

@@ -9,7 +9,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -56,7 +56,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -103,7 +103,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -153,7 +153,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -198,7 +198,7 @@ SELECT
     REPLICATE('A',10),
     REPLICATE('B',10),
     DATEADD(DAY, RAND(CHECKSUM(NEWID()))*(1+DATEDIFF(DAY, @FromDate, @ToDate)), @FromDate);
-GO 1000
+GO 500
 
 
 /****************************************************************************************
@@ -208,7 +208,7 @@ GO 1000
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -258,7 +258,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -303,7 +303,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -332,7 +332,7 @@ GO
 
 
 /****************************************************************************************
---Truncate open partition
+--Truncate open partition (reset for next demo)
 *****************************************************************************************/
 
 

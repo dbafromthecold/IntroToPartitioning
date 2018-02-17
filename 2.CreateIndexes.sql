@@ -9,7 +9,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -67,7 +67,7 @@ GO
 
 SELECT 
 	p.partition_number, p.partition_id, fg.name AS [filegroup],
-	r.boundary_id, r.value AS BoundaryValue, p.rows
+	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
 INNER JOIN
@@ -163,22 +163,4 @@ DROP INDEX IF EXISTS [IX_ColA_PartitionedTable] ON dbo.PartitionedTable;
 CREATE NONCLUSTERED INDEX [IX_ColA_PartitionedTable] ON dbo.PartitionedTable
  (ColA) 
 ON PS_PartitionedTable(CreatedDate);
-GO
-
-
-/****************************************************************************************
---Run a query referencing the partitioning key
-*****************************************************************************************/
-
-
-SELECT *
-FROM dbo.PartitionedTable;
-GO
-
-
-DECLARE @CurrentDate DATE = GETDATE();
-SELECT *
-FROM dbo.PartitionedTable
-WHERE CreatedDate > DATEADD(dd,-2,@CurrentDate)
-AND CreatedDate < @CurrentDate;
 GO
