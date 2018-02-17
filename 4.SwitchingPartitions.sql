@@ -192,7 +192,7 @@ GO
 *****************************************************************************************/
 
 
-SELECT COUNT(*) FROM dbo.PartitionedTable_Switch;
+SELECT COUNT(*) AS [RowCount] FROM dbo.PartitionedTable_Switch;
 GO
 
 

@@ -52,11 +52,12 @@ DECLARE @CurrentDate DATE = GETDATE();
 
 CREATE PARTITION FUNCTION PF_PartitionedTable(DATE)
 	   AS RANGE RIGHT 
-    FOR VALUES (DATEADD(dd,-4,@CurrentDate),DATEADD(dd,-3,@CurrentDate),
+    FOR VALUES (DATEADD(dd,-7,@CurrentDate),
+				DATEADD(dd,-6,@CurrentDate),DATEADD(dd,-5,@CurrentDate),
+				DATEADD(dd,-4,@CurrentDate),DATEADD(dd,-3,@CurrentDate),
 				DATEADD(dd,-2,@CurrentDate),DATEADD(dd,-1,@CurrentDate),
-				@CurrentDate,
-				DATEADD(dd,1,@CurrentDate),DATEADD(dd,2,@CurrentDate),
-				DATEADD(dd,3,@CurrentDate),DATEADD(dd,4,@CurrentDate));
+                @CurrentDate,
+                DATEADD(dd,+1,@CurrentDate));
 GO
 
 
@@ -92,6 +93,27 @@ DECLARE @CurrentDate DATE = GETDATE();
 INSERT INTO dbo.PartitionedTable
 (ColA,ColB,CreatedDate)
 VALUES
+(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-6,@CurrentDate));
+GO 100
+
+DECLARE @CurrentDate DATE = GETDATE();
+INSERT INTO dbo.PartitionedTable
+(ColA,ColB,CreatedDate)
+VALUES
+(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-5,@CurrentDate));
+GO 100
+
+DECLARE @CurrentDate DATE = GETDATE();
+INSERT INTO dbo.PartitionedTable
+(ColA,ColB,CreatedDate)
+VALUES
+(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-4,@CurrentDate));
+GO 100
+
+DECLARE @CurrentDate DATE = GETDATE();
+INSERT INTO dbo.PartitionedTable
+(ColA,ColB,CreatedDate)
+VALUES
 (REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,-3,@CurrentDate));
 GO 100
 
@@ -114,27 +136,6 @@ INSERT INTO dbo.PartitionedTable
 (ColA,ColB,CreatedDate)
 VALUES
 (REPLICATE('A',10),REPLICATE('A',10),@CurrentDate);
-GO 100
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+1,@CurrentDate));
-GO 100
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+2,@CurrentDate));
-GO 100
-
-DECLARE @CurrentDate DATE = GETDATE();
-INSERT INTO dbo.PartitionedTable
-(ColA,ColB,CreatedDate)
-VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+3,@CurrentDate));
 GO 50
 
 

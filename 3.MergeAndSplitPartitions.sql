@@ -193,21 +193,21 @@ DECLARE @CurrentDate DATE = GETDATE();
 INSERT INTO dbo.PartitionedTable
 (ColA,ColB,CreatedDate)
 VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+4,@CurrentDate));
+(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+1,@CurrentDate));
 GO 200
 
 DECLARE @CurrentDate DATE = GETDATE();
 INSERT INTO dbo.PartitionedTable
 (ColA,ColB,CreatedDate)
 VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+5,@CurrentDate));
+(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+2,@CurrentDate));
 GO 200
 
 DECLARE @CurrentDate DATE = GETDATE();
 INSERT INTO dbo.PartitionedTable
 (ColA,ColB,CreatedDate)
 VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+6,@CurrentDate));
+(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+3,@CurrentDate));
 GO 200
 
 

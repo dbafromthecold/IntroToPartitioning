@@ -210,7 +210,7 @@ DECLARE @CurrentDate DATE = GETDATE();
 INSERT INTO dbo.PartitionedTable_Staging
 (ColA,ColB,CreatedDate)
 VALUES
-(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+6,@CurrentDate));
+(REPLICATE('A',10),REPLICATE('A',10),DATEADD(dd,+3,@CurrentDate));
 GO 100
 
 

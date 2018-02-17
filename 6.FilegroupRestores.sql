@@ -272,11 +272,13 @@ ORDER BY
 GO
 
 
+DECLARE @CurrentDate DATE = GETDATE();
 SELECT * FROM dbo.PartitionedTable
-WHERE CreatedDate = CONVERT(DATE,'2018-02-17')
+WHERE CreatedDate = DATEADD(dd,+3,@CurrentDate)
 GO
 
 
+DECLARE @CurrentDate DATE = GETDATE();
 SELECT * FROM dbo.PartitionedTable
-WHERE CreatedDate = CONVERT(DATE,'2018-02-16')
+WHERE CreatedDate = DATEADD(dd,-1,@CurrentDate)
 GO
