@@ -96,8 +96,7 @@ GO
 
 ALTER TABLE [dbo].PartitionedTable
 	SWITCH PARTITION 1
-TO [dbo].PartitionedTable_Archive
-		PARTITION 1;
+TO [dbo].PartitionedTable_Archive;
 GO
 
 
@@ -272,7 +271,7 @@ GO
 
 
 ALTER TABLE [dbo].PartitionedTable_Staging
-	SWITCH PARTITION 1
+	SWITCH
 TO [dbo].PartitionedTable
 		PARTITION 6;
 GO
