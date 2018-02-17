@@ -48,7 +48,6 @@ GO
 USE [PartitioningDemo];
 GO
 
-DECLARE @CurrentDate DATE = GETDATE();
 
 CREATE PARTITION FUNCTION PF_PartitionedTable(DATE)
 	   AS RANGE LEFT 
@@ -139,8 +138,6 @@ DROP PARTITION FUNCTION PF_PartitionedTable;
 GO
 
 
-DECLARE @CurrentDate DATE = GETDATE();
-
 CREATE PARTITION FUNCTION PF_PartitionedTable(DATE)
 	   AS RANGE RIGHT 
     FOR VALUES ('2011-01-01','2012-01-01','2013-01-01',
@@ -186,7 +183,7 @@ SET NOCOUNT ON;
 SET STATISTICS IO OFF;
 
 DECLARE @FromDate date = '2012-01-01'
-DECLARE @ToDate date = '2016-01-01'
+DECLARE @ToDate date = '2017-01-01'
 
 INSERT INTO dbo.PartitionedTable
 SELECT 

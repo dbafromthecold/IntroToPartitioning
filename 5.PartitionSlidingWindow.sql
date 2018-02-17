@@ -8,7 +8,7 @@ GO
 
 
 SELECT 
-	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
+	p.partition_number, p.partition_id, fg.name AS [filegroup],
 	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
@@ -107,7 +107,7 @@ GO
 
 
 SELECT 
-	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
+	p.partition_number, p.partition_id, fg.name AS [filegroup],
 	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
@@ -157,7 +157,7 @@ GO
 
 
 SELECT 
-	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
+	p.partition_number, p.partition_id, fg.name AS [filegroup],
 	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
@@ -233,7 +233,7 @@ GO
 
 
 SELECT 
-	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
+	p.partition_number, p.partition_id, fg.name AS [filegroup],
 	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
@@ -284,7 +284,7 @@ GO
 
 
 SELECT 
-	t.name, p.partition_number, p.partition_id, fg.name AS [filegroup],
+	p.partition_number, p.partition_id, fg.name AS [filegroup],
 	r.boundary_id, CONVERT(DATE,r.value) AS BoundaryValue, p.rows
 FROM 
 	sys.tables AS t
