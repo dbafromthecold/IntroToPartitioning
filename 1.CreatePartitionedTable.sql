@@ -225,3 +225,9 @@ AND
 ORDER BY 
 	p.partition_number 
 		DESC;
+
+
+
+
+TRUNCATE TABLE dbo.PartitionedTable WITH (PARTITIONS (8));
+GO
