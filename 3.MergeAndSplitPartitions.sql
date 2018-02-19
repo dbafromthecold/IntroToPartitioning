@@ -186,7 +186,6 @@ GO
 *****************************************************************************************/
 
 
---https://stackoverflow.com/questions/9645348/how-to-insert-1000-random-dates-between-a-given-range
 SET NOCOUNT ON;
 SET STATISTICS IO OFF;
 
@@ -197,7 +196,7 @@ INSERT INTO dbo.PartitionedTable
 SELECT 
     REPLICATE('A',10),
     REPLICATE('B',10),
-    DATEADD(DAY, RAND(CHECKSUM(NEWID()))*(1+DATEDIFF(DAY, @FromDate, @ToDate)), @FromDate);
+    DATEADD(DD,FLOOR(RAND()*(DATEDIFF(DD,@FromDate,@ToDate))),@FromDate);
 GO 500
 
 
