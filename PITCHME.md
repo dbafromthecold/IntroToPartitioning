@@ -97,7 +97,7 @@ All column types except timestamp, ntext, text, image, xml, varchar(max), nvarch
 
 #### Maps rows in the table to a partition
 
----?code=assets/slide_code&lang=sql&title=Partition Function
+---?code=assets/code/CreatePartitionFunction.sql&lang=sql&title=Partition Function
 
 #### Maps rows in the table to a partition
 
