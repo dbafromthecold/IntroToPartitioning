@@ -122,6 +122,7 @@ Maps partitions to filegroups
 ### Clustered Indexes
 
 Create on the partition scheme specifying the partitioning key <br>
+&nbsp;
 <b>@color[#fffdd0](Unique)</b> – the partitioning key has to be explicitly specified <br>
 <b>@color[#fffdd0](Nonunique)</b> – the partitioning key will be added by SQL if not explicitly specified
 
@@ -131,8 +132,8 @@ Create on the partition scheme specifying the partitioning key <br>
 
 ### Nonclustered Indexes
 
-An index that is created using the same partition scheme as the base table is <b>aligned</b> <br>
-An index that is created on a different filegroup or using a different partition scheme is <b>non-aligned</b>
+An index that is created using the same partition scheme as the base table is <b>@color[#fffdd0](aligned)</b> <br>
+An index that is created on a different filegroup or using a different partition scheme is <b>@color[#fffdd0](non-aligned)</b>
 
 ---
 
