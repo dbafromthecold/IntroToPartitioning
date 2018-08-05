@@ -26,7 +26,7 @@
 
 @title[Agenda]
 
-### @fa[bullseye] Agenda
+### Agenda
 
 1. Partitioning Definition
 2. Partitioning Key
@@ -42,6 +42,11 @@
 
 ### What is partitioning?
 
+#### Splitting a table horizontally into different units
+#### Units can be spread across different physical locations
+#### Limit of 15,000 partitions per table
+#### Primarily for maintenance of data
+#### Specialist functions available to manage data
 
 ---
 
