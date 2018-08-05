@@ -165,6 +165,7 @@ An index that is created on a different filegroup or using a different partition
 ### Nonclustered Indexes
 
 <b>Unique</b> - the partitioning key has to be explicitly specified
+<br>
 <b>Nonunique</b> - the partitioning key will be added by SQL if not  explicitly specified as an included column
 
 ---
