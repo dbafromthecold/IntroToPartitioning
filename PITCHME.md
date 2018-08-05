@@ -83,15 +83,28 @@
 
 ### Partitioning key
 
+#### Column in the table which defines partition boundaries
+#### How is the data going to be split?
+#### Archiving/retention policy for the data?
+#### How is the table going to be queried?
+#### All column types except timestamp, ntext, text, image, xml, varchar(max), nvarchar(max), or varbinary(max)
+
 ---
 
 @title[Partition function]
 
 ### Parition function
 
+#### Maps rows in the table to a partition
+
+
+
 ---
 
 @title[Left/Right range types]
+
+#### Defines which side of the boundary the value specified belongs
+
 
 
 ---
@@ -100,12 +113,14 @@
 
 ### Partition Scheme
 
+#### Maps partitions to filegroups
+
+
 ---
 
 @title[Creating a partitioned table]
 
 ### Creating a partitioned table
-
 
 ---
 
@@ -126,6 +141,11 @@
 @title[Clustered Indexes]
 
 ### Clustered Indexes
+
+####Create on the partition scheme specifying the partitioning key
+<br>
+####<b>Unique</b> – the partitioning key has to be explicitly specified 
+####<b>Nonunique</b> – the partitioning key will be added by SQL if not
 
 ---
 
