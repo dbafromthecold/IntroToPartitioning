@@ -52,7 +52,7 @@ Specialist functions available to manage data
 
 @title[Benefits]
 
-### Benefits
+### @fa[thumbs-up] Benefits
 
 Partitioned tables appear as normal tables <br>
 Data is automatically mapped to the correct partition <br>
@@ -64,7 +64,7 @@ Individual partitions can be rebuilt
 
 @title[Drawbacks]
 
-### Drawbacks
+### @fa[exclamation-triangle] Drawbacks
 
 Requires management of partitions and filegroups <br>
 Specialist operations can be blocked by DML operations <br>
@@ -141,8 +141,8 @@ An index that is created on a different filegroup or using a different partition
 
 ### Nonclustered Indexes
 
-<b>Unique</b> - the partitioning key has to be explicitly specified <br>
-<b>Nonunique</b> - the partitioning key will be added by SQL if not  explicitly specified as an included column
+<b>@color[#fffdd0](Unique)</b> - the partitioning key has to be explicitly specified <br>
+<b>@color[#fffdd0](Nonunique)</b> - the partitioning key will be added by SQL if not  explicitly specified as an included column
 
 ---
 
