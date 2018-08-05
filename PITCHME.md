@@ -166,11 +166,7 @@ Effectively “merges” two partitions into one <br>
 Meta-data only operation if performed on an empty partition <br>
 Data will be moved if partition is not empty, causing blocking and transaction log growth
 
----
-
-@title[Merging Partitions cont]
- 
-
+---?code=assets/code/MergingPartitions.sql&lang=sql&title=Merging Partitions
 
 ---
 
@@ -184,14 +180,7 @@ Takes a schema modification lock on the table <br>
 Meta-data only operation if partition is empty <br>
 SQL will move data to the new partition if the data crosses the new boundary value
 
----
-
-@title[Splitting Paritions cont]
-
-### Spliting Partitions
-
-
-
+---?code=assets/code/SplittingPartitions.sql&lang=sql&title=Splitting Partitions
 
 ---
 
@@ -216,12 +205,7 @@ Meta-data operation, runs immediately <br>
 Both tables must have the same structures <br>
 Destination partition must be empty or…if destination table is not partitioned, it must be completely empty
 
----
-
-@title[Switching Partitions cont]
-
-
-
+---?code=assets/code/SwitchingPartitions.sql&lang=sql&title=Switching Partitions
 
 ---
 
