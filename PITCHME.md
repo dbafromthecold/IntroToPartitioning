@@ -89,17 +89,9 @@ Archiving/retention policy for the data? <br>
 How is the table going to be queried? <br>
 All column types except timestamp, ntext, text, image, xml, varchar(max), nvarchar(max), or varbinary(max)
 
----
-
-@title[Partition function]
-
-### Parition function
-
-#### Maps rows in the table to a partition
-
 ---?code=assets/code/CreatePartitionFunction.sql&lang=sql&title=Partition Function
 
-#### Maps rows in the table to a partition
+Maps rows in the table to a partition
 
 ---
 
@@ -107,25 +99,11 @@ All column types except timestamp, ntext, text, image, xml, varchar(max), nvarch
 
 #### Defines which side of the boundary the value specified belongs
 
+---?code=assets/code/CreatePartitionScheme.sql&lang=sql&title=Partition Scheme
 
+Maps partitions to filegroups
 
----
-
-@title[Partition Scheme]
-
-### Partition Scheme
-
-#### Maps partitions to filegroups
-
-
-
----
-
-@title[Creating a partitioned table]
-
-### Creating a partitioned table
-
-
+---?code=assets/code/CreatePartitionedTable.sql&lang=sql&title=Partitioned Table
 
 ---
 
