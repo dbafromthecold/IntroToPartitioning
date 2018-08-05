@@ -142,10 +142,10 @@
 
 ### Clustered Indexes
 
-####Create on the partition scheme specifying the partitioning key
+#### Create on the partition scheme specifying the partitioning key
 <br>
-####<b>Unique</b> – the partitioning key has to be explicitly specified 
-####<b>Nonunique</b> – the partitioning key will be added by SQL if not
+#### <b>Unique</b> – the partitioning key has to be explicitly specified 
+#### <b>Nonunique</b> – the partitioning key will be added by SQL if not
 
 ---
 
