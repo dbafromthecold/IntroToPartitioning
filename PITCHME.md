@@ -1,8 +1,8 @@
-# An Introduction to Partitioning
+[@title] An Introduction to Partitioning
 
 dbafromthecold
 
 
-# About me
+[@title] About me
 
 Andrew Pruski
