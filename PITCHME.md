@@ -12,6 +12,6 @@
 
 ## SQL Server DBA & Microsoft Data Platform MVP
 
-### @dbafromthecold
-### dbafromthecold@gmail.com
-### www.dbafromthecold.com
+#### [@fa[twitter] @dbafromthecold](https://twitter.com/dbafromthecold)
+####  dbafromthecold@gmail.com
+####  www.dbafromthecold.com
