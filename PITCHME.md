@@ -268,6 +268,8 @@ Reduce recovery time for “active” data
 
 ## A quick story
 
+![ShortStory](assets/images/ShortStory)
+
 ---
 
 @title[Resources]
