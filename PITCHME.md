@@ -100,6 +100,10 @@ Defines which side of the boundary the value specified belongs
 
 ---?code=assets/code/CreatePartitionScheme.sql&lang=sql&title=Partition Scheme
 
+@[1-3](Defines which side of the boundary the value specified belongs)
+@[5-6](Data from & including 2017-01-01 to 2017-12-31)
+@[8-9](Data from & including 2017-01-02 to 2018-01-01)
+
 Maps partitions to filegroups
 
 ---?code=assets/code/CreatePartitionedTable.sql&lang=sql&title=Partitioned Table
