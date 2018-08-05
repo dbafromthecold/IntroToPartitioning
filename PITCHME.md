@@ -95,11 +95,7 @@ Maps rows in the table to a partition
 
 ---?code=assets/code/RightLeftPartitionBoundaries.sql&lang=sql&title=Partition Boundaries
 
----
-
-@title[Left/Right range types]
-
-#### Defines which side of the boundary the value specified belongs
+Defines which side of the boundary the value specified belongs
 
 ---?code=assets/code/CreatePartitionScheme.sql&lang=sql&title=Partition Scheme
 
