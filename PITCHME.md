@@ -40,16 +40,21 @@
 
 @title[Partitioning Definition]
 
+### What is partitioning?
+
 
 ---
 
 @title[Benefits]
+
+### Benefits
 
 
 ---
 
 @title[Drawbacks]
 
+### Drawbacks
 
 ---
 
@@ -61,11 +66,13 @@
 
 @title[Partitioning key]
 
+### Partitioning key
 
 ---
 
-@title[Partitioning function]
+@title[Partition function]
 
+### Parition function
 
 ---
 
@@ -76,10 +83,13 @@
 
 @title[Partition Scheme]
 
+### Partition Scheme
 
 ---
 
 @title[Creating a partitioned table]
+
+### Creating a partitioned table
 
 
 ---
@@ -100,11 +110,13 @@
 
 @title[Clustered Indexes]
 
+### Clustered Indexes
 
 ---
 
 @title[Nonclustered Indexes]
 
+### Nonclustered Indexes
 
 ---
 
@@ -116,12 +128,13 @@
 
 @title[Merging & Splitting partitions]
 
-## Merging & Splitting Partitioned
+## Merging & Splitting Partitions
 
 ---
 
 @title[Merging Partitions]
 
+### Merging Partitions
 
 ---
 
@@ -132,11 +145,13 @@
 
 @title[Splitting Partitions]
 
+## Splitting Partitions
 
 ---
 
 @title[Splitting Paritions cont]
 
+### Spliting Partitions
 
 ---
 
@@ -150,11 +165,11 @@
 
 ## Switching Partitions
 
-
 ---
 
 @title[Switching Partitions cont]
 
+### Switching Partitions
 
 ---
 
@@ -164,13 +179,15 @@
 
 ---
 
-@title{Implementing Partition Sliding Windows]
+@title[Implementing Partition Sliding Windows]
 
+## Implementing Partition Sliding Windows
 
 ---
 
 @title[Partition Sliding Windows]
 
+### Partition Sliding Windows
 
 ---
 
@@ -188,6 +205,7 @@
 
 @title[Filegroup Restores Benefits]
 
+### Filegroup Restores
 
 ---
 
@@ -207,14 +225,14 @@
 
 @title[Resources]
 
-#### Resources
+### Resources
 
 ---
 
 
 @title[Questions]
 
-## Demo
+## Questions?
 
 
 
