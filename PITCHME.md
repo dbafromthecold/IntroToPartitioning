@@ -42,10 +42,10 @@
 
 ### What is partitioning?
 
-Splitting a table horizontally into different units
-Units can be spread across different physical locations
-Limit of 15,000 partitions per table
-Primarily for maintenance of data
+Splitting a table horizontally into different units <br>
+Units can be spread across different physical locations <br>
+Limit of 15,000 partitions per table <br>
+Primarily for maintenance of data <br>
 Specialist functions available to manage data
 
 ---
@@ -54,10 +54,10 @@ Specialist functions available to manage data
 
 ### Benefits
 
-Partitioned tables appear as normal tables
-Data is automatically mapped to the correct partition
-Specialist operations allow for easy management of data
-Individual partitions can be compressed
+Partitioned tables appear as normal tables <br>
+Data is automatically mapped to the correct partition <br>
+Specialist operations allow for easy management of data <br>
+Individual partitions can be compressed <br>
 Individual partitions can be rebuilt
 
 ---
@@ -66,9 +66,9 @@ Individual partitions can be rebuilt
 
 ### Drawbacks
 
-Requires management of partitions and filegroups
-Specialist operations can be blocked by DML operations
-Foreign keys referencing partitioned table will prevent switch operations
+Requires management of partitions and filegroups <br>
+Specialist operations can be blocked by DML operations <br>
+Foreign keys referencing partitioned table will prevent switch operations <br>
 Performance of queries not referencing the partitioning key will be affected
 
 ---
@@ -83,10 +83,10 @@ Performance of queries not referencing the partitioning key will be affected
 
 ### Partitioning key
 
-Column in the table which defines partition boundaries
-How is the data going to be split?
-Archiving/retention policy for the data?
-How is the table going to be queried?
+Column in the table which defines partition boundaries <br>
+How is the data going to be split? <br>
+Archiving/retention policy for the data? <br>
+How is the table going to be queried? <br>
 All column types except timestamp, ntext, text, image, xml, varchar(max), nvarchar(max), or varbinary(max)
 
 ---
@@ -143,10 +143,8 @@ All column types except timestamp, ntext, text, image, xml, varchar(max), nvarch
 
 ### Clustered Indexes
 
-Create on the partition scheme specifying the partitioning key
-<br>
-<b>Unique</b> – the partitioning key has to be explicitly specified 
-<br>
+Create on the partition scheme specifying the partitioning key <br>
+<b>Unique</b> – the partitioning key has to be explicitly specified <br>
 <b>Nonunique</b> – the partitioning key will be added by SQL if not explicitly specified
 
 ---
@@ -155,8 +153,7 @@ Create on the partition scheme specifying the partitioning key
 
 ### Nonclustered Indexes
 
-An index that is created using the same partition scheme as the base table is <b>aligned</b>
-<br>
+An index that is created using the same partition scheme as the base table is <b>aligned</b> <br>
 An index that is created on a different filegroup or using a different partition scheme is <b>non-aligned</b>
 
 ---
@@ -165,8 +162,7 @@ An index that is created on a different filegroup or using a different partition
 
 ### Nonclustered Indexes
 
-<b>Unique</b> - the partitioning key has to be explicitly specified
-<br>
+<b>Unique</b> - the partitioning key has to be explicitly specified <br>
 <b>Nonunique</b> - the partitioning key will be added by SQL if not  explicitly specified as an included column
 
 ---
@@ -187,9 +183,9 @@ An index that is created on a different filegroup or using a different partition
 
 ### Merging Partitions
 
-Removes a partition
-Effectively “merges” two partitions into one
-Meta-data only operation if performed on an empty partition
+Removes a partition <br>
+Effectively “merges” two partitions into one <br>
+Meta-data only operation if performed on an empty partition <br>
 Data will be moved if partition is not empty, causing blocking and transaction log growth
 
 ---
@@ -204,10 +200,10 @@ Data will be moved if partition is not empty, causing blocking and transaction l
 
 ## Splitting Partitions
 
-Creates a new partition with new boundary value
-New boundary value must be distinct from other values
-Takes a schema modification lock on the table
-Meta-data only operation if partition is empty
+Creates a new partition with new boundary value <br>
+New boundary value must be distinct from other values <br>
+Takes a schema modification lock on the table <br>
+Meta-data only operation if partition is empty <br>
 SQL will move data to the new partition if the data crosses the new boundary value
 
 ---
@@ -237,9 +233,9 @@ SQL will move data to the new partition if the data crosses the new boundary val
 
 ### Switching Partitions
 
-Move a partition from one table to another
-Meta-data operation, runs immediately 
-Both tables must have the same structures
+Move a partition from one table to another <br>
+Meta-data operation, runs immediately <br>
+Both tables must have the same structures <br>
 Destination partition must be empty or…if destination table is not partitioned, it must be completely empty
 
 ---
@@ -265,10 +261,10 @@ Destination partition must be empty or…if destination table is not partitioned
 
 @title[Partition Sliding Windows]
 
-### Partition Sliding Windows
+### Partition Sliding Windows 
 
-Method to remove old data and bring in new data periodically
-Implements the SWITCH, MERGE, & SPLIT functions
+Method to remove old data and bring in new data periodically <br>
+Implements the SWITCH, MERGE, & SPLIT functions <br>
 Partitions in the table move “forward” but the overall number of partitions remains the same
 
 ---
@@ -289,10 +285,10 @@ Partitions in the table move “forward” but the overall number of partitions 
 
 ### Filegroup Restores
 
-Can be useful for VLDBs
-Can be used to restore live partitions to development 
-Individual partitions are on different filegroups
-Data in older partitions does not change or is not needed 
+Can be useful for VLDBs <br>
+Can be used to restore live partitions to development <br>
+Individual partitions are on different filegroups <br>
+Data in older partitions does not change or is not needed <br> 
 Reduce recovery time for “active” data
 
 ---
@@ -314,9 +310,9 @@ Reduce recovery time for “active” data
 
 ### Resources
 
-https://github.com/dbafromthecold/IntroToPartitioning 
-https://dbafromthecold.com/2018/02/19/summary-of-my-partitioning-series/ 
-https://docs.microsoft.com/en-us/sql/relational-databases/partitions/partitioned-tables-and-indexes 
+https://github.com/dbafromthecold/IntroToPartitioning <br>
+https://dbafromthecold.com/2018/02/19/summary-of-my-partitioning-series/ <br> 
+https://docs.microsoft.com/en-us/sql/relational-databases/partitions/partitioned-tables-and-indexes <br> 
 https://technet.microsoft.com/en-us/library/ms187526(v=sql.105).aspx
 
 ---
