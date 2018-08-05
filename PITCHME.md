@@ -228,7 +228,7 @@ Destination partition must be empty or…if destination table is not partitioned
 ### Partition Sliding Windows 
 
 Method to remove old data and bring in new data periodically <br>
-Implements the SWITCH, MERGE, & SPLIT functions <br>
+Implements the <br>@color[#fffdd0](SWITCH)</br>, <br>@color[#fffdd0](MERGE)</br>, & <br>@color[#fffddo](SPLIT)</br> functions <br>
 Partitions in the table move “forward” but the overall number of partitions remains the same
 
 ---
