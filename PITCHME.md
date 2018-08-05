@@ -268,7 +268,7 @@ Reduce recovery time for “active” data
 
 ## A quick story
 
-![ShortStory](assets/images/ShortStory)
+<img src="assets/images/ShortStory" alt="ShortStory" align="right" size="small"/>
 
 ---
 
