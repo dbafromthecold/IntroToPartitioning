@@ -1,10 +1,17 @@
 @title[An Introduction to Partitioning]
 
-dbafromthecold
+# An Introduction to Partitioning
 
+## Andrew Pruski
+
+---
 
 @title[About me]
 
-Andrew Pruski
+# Andrew Pruski
 
-SQL Server DBA & Microsoft Data Platform MVP
+## SQL Server DBA & Microsoft Data Platform MVP
+
+### @dbafromthecold
+### dbafromthecold@gmail.com
+### www.dbafromthecold.com
