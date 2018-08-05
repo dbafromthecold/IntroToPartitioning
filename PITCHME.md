@@ -122,7 +122,7 @@ Maps partitions to filegroups
 ### Clustered Indexes
 
 Create on the partition scheme specifying the partitioning key <br>
-&nbsp;
+<br>
 <b>@color[#fffdd0](Unique)</b> – the partitioning key has to be explicitly specified <br>
 <b>@color[#fffdd0](Nonunique)</b> – the partitioning key will be added by SQL if not explicitly specified
 
