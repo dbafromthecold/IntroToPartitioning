@@ -96,13 +96,11 @@ Maps rows in the table to a partition
 
 ---?code=assets/code/RightLeftPartitionBoundaries.sql&lang=sql&title=Partition Boundaries
 
-Defines which side of the boundary the value specified belongs
-
----?code=assets/code/CreatePartitionScheme.sql&lang=sql&title=Partition Scheme
-
 @[1-3](Defines which side of the boundary the value specified belongs)
 @[5-6](Data from & including 2017-01-01 to 2017-12-31)
 @[8-9](Data from & including 2017-01-02 to 2018-01-01)
+
+---?code=assets/code/CreatePartitionScheme.sql&lang=sql&title=Partition Scheme
 
 Maps partitions to filegroups
 
