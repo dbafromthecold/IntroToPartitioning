@@ -9,9 +9,9 @@
 # Theme setting options:
 # black, moon, night, beige, sky, white, simple
 #
-theme : night
+theme : moon
 # theme-override : assets/css/PITCHME.css
-highlight : monokai
+# highlight : monokai
 #
 # Layout setting options:
 # center, center-left, center-right, top, top-left, top-right
