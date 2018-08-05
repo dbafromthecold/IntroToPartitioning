@@ -12,10 +12,10 @@
 
 ## SQL Server DBA & Microsoft Data Platform MVP
 
-[@fa[twitter] @dbafromthecold](https://twitter.com/dbafromthecold) <br>
+@fa[twitter] @dbafromthecold] <br>
 @fa[envelope] @color[orange](dbafromthecold@gmail.com) <br>
 @fa[wordpress] www.dbafromthecold.com <br>
-@fa[github] https://github.com/dbafromthecold
+@fa[github] github.com/dbafromthecold
 
 ---
 
