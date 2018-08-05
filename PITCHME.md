@@ -54,12 +54,22 @@
 
 ### Benefits
 
+#### Partitioned tables appear as normal tables
+#### Data is automatically mapped to the correct partition
+#### Specialist operations allow for easy management of data
+#### Individual partitions can be compressed
+#### Individual partitions can be rebuilt
 
 ---
 
 @title[Drawbacks]
 
 ### Drawbacks
+
+#### Requires management of partitions and filegroups
+#### Specialist operations can be blocked by DML operations
+#### Foreign keys referencing partitioned table will prevent switch operations
+#### Performance of queries not referencing the partitioning key will be affected
 
 ---
 
