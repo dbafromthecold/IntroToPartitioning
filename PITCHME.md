@@ -91,9 +91,9 @@ All column types except timestamp, ntext, text, image, xml, varchar(max), nvarch
 
 ---?code=assets/code/CreatePartitionFunction.sql&lang=sql&title=Partition Function
 
----?code=assets/code/RightLeftPartitonBoundaries.sql&lang=sql&title=Partition Boundaries
-
 Maps rows in the table to a partition
+
+---?code=assets/code/RightLeftPartitionBoundaries.sql&lang=sql&title=Partition Boundaries
 
 ---
 
