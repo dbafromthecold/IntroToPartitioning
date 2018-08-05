@@ -73,7 +73,7 @@
 
 ---
 
-@title[Building a partitioned table]
+@title[Building a Partitioned Table Section Header]
 
 ## Building a partitioned table
 
@@ -116,11 +116,14 @@
 #### Maps partitions to filegroups
 
 
+
 ---
 
 @title[Creating a partitioned table]
 
 ### Creating a partitioned table
+
+
 
 ---
 
@@ -130,13 +133,11 @@
 
 ---
 
-
-@title[Indexing Considerations]
+@title[Indexing Considerations Section Header]
 
 ## Indexing considerations
 
 ---
-
 
 @title[Clustered Indexes]
 
@@ -145,13 +146,27 @@
 #### Create on the partition scheme specifying the partitioning key
 <br>
 #### <b>Unique</b> – the partitioning key has to be explicitly specified 
-#### <b>Nonunique</b> – the partitioning key will be added by SQL if not
+#### <b>Nonunique</b> – the partitioning key will be added by SQL if not explicitly specified
 
 ---
 
 @title[Nonclustered Indexes]
 
 ### Nonclustered Indexes
+
+An index that is created using the same partition scheme as the base table is <b>aligned</b>
+<br>
+An index that is created on a different filegroup or using a different partition scheme is <b>non-aligned</b>
+
+---
+
+@title[Nonclustered Index cont]
+
+### Nonclustered Indexes
+
+#### <>Unique</b> - the partitioning key has to be explicitly specified
+
+#### <b>Nonunique</b> - the partitioning key will be added by SQL if not  explicitly specified as an included column
 
 ---
 
@@ -161,7 +176,7 @@
 
 ---
 
-@title[Merging & Splitting partitions]
+@title[Merging & Splitting Partitions Section Header]
 
 ## Merging & Splitting Partitions
 
@@ -171,9 +186,15 @@
 
 ### Merging Partitions
 
+#### Removes a partition
+#### Effectively “merges” two partitions into one
+#### Meta-data only operation if performed on an empty partition
+#### Data will be moved if partition is not empty, causing blocking and transaction log growth
+
 ---
 
 @title[Merging Partitions cont]
+ 
 
 
 ---
@@ -182,11 +203,20 @@
 
 ## Splitting Partitions
 
+#### Creates a new partition with new boundary value
+#### New boundary value must be distinct from other values
+#### Takes a schema modification lock on the table
+#### Meta-data only operation if partition is empty
+#### SQL will move data to the new partition if the data crosses the new boundary value
+
 ---
 
 @title[Splitting Paritions cont]
 
 ### Spliting Partitions
+
+
+
 
 ---
 
@@ -196,15 +226,27 @@
 
 ---
 
-@title[Switching Partitions]
+@title[Switching Partitions Section Header]
 
 ## Switching Partitions
 
 ---
 
-@title[Switching Partitions cont]
+@title[Switching Partitions]
 
 ### Switching Partitions
+
+#### Move a partition from one table to another
+#### Meta-data operation, runs immediately 
+#### Both tables must have the same structures
+#### Destination partition must be empty or…if destination table is not partitioned, it must be completely empty
+
+---
+
+@title[Switching Partitions cont]
+
+
+
 
 ---
 
@@ -214,7 +256,7 @@
 
 ---
 
-@title[Implementing Partition Sliding Windows]
+@title[Implementing Partition Sliding Windows Section Header]
 
 ## Implementing Partition Sliding Windows
 
@@ -224,6 +266,10 @@
 
 ### Partition Sliding Windows
 
+#### Method to remove old data and bring in new data periodically
+#### Implements the SWITCH, MERGE, & SPLIT functions
+#### Partitions in the table move “forward” but the overall number of partitions remains the same
+
 ---
 
 @title[Demo 5]
@@ -232,7 +278,7 @@
 
 ---
 
-@title[Filegroup Restores]
+@title[Filegroup Restores Section Header]
 
 ## Filegroup Restores
 
@@ -241,6 +287,12 @@
 @title[Filegroup Restores Benefits]
 
 ### Filegroup Restores
+
+#### Can be useful for VLDBs
+#### Can be used to restore live partitions to development 
+#### Individual partitions are on different filegroups
+#### Data in older partitions does not change or is not needed 
+#### Reduce recovery time for “active” data
 
 ---
 
@@ -257,20 +309,17 @@
 
 ---
 
-
 @title[Resources]
 
 ### Resources
 
----
+#### https://github.com/dbafromthecold/IntroToPartitioning 
+#### https://dbafromthecold.com/2018/02/19/summary-of-my-partitioning-series/ 
+#### https://docs.microsoft.com/en-us/sql/relational-databases/partitions/partitioned-tables-and-indexes 
+#### https://technet.microsoft.com/en-us/library/ms187526(v=sql.105).aspx
 
+---
 
 @title[Questions]
 
 ## Questions?
-
-
-
-
-
-
