@@ -12,9 +12,9 @@
 
 ## SQL Server DBA & Microsoft Data Platform MVP
 
-#### [@fa[twitter] @dbafromthecold](https://twitter.com/dbafromthecold)
-#### @color[orange](dbafromthecold@gmail.com)
-#### @color[brown](www.dbafromthecold.com)
+[@fa[twitter] @dbafromthecold](https://twitter.com/dbafromthecold)
+@color[orange](dbafromthecold@gmail.com)
+@color[brown](www.dbafromthecold.com)
 
 ---
 
@@ -164,7 +164,7 @@ An index that is created on a different filegroup or using a different partition
 
 ### Nonclustered Indexes
 
-<>Unique</b> - the partitioning key has to be explicitly specified
+<b>Unique</b> - the partitioning key has to be explicitly specified
 <b>Nonunique</b> - the partitioning key will be added by SQL if not  explicitly specified as an included column
 
 ---
