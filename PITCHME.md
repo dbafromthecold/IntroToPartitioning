@@ -97,11 +97,9 @@ All column types except timestamp, ntext, text, image, xml, varchar(max), nvarch
 
 #### Maps rows in the table to a partition
 
-[code language="sql"]
-CREATE PARTITION FUNCTION [NAME](DATATYPE)
-	AS RANGE RIGHT | LEFT
-FOR VALUES (n,n1,n2...nx);
-[/code]
+---?gist=dbafromthecold/f47b186bd49fc74790cb9ff39397b9ce
+
+@[1-3](Create Partition Function)
 
 ---
 
