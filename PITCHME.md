@@ -146,6 +146,7 @@ All column types except timestamp, ntext, text, image, xml, varchar(max), nvarch
 Create on the partition scheme specifying the partitioning key
 <br>
 <b>Unique</b> – the partitioning key has to be explicitly specified 
+<br>
 <b>Nonunique</b> – the partitioning key will be added by SQL if not explicitly specified
 
 ---
