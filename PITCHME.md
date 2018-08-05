@@ -13,8 +13,8 @@
 ## SQL Server DBA & Microsoft Data Platform MVP
 
 #### [@fa[twitter] @dbafromthecold](https://twitter.com/dbafromthecold)
-#### @color(orange)dbafromthecold@gmail.com
-#### @color(brown) www.dbafromthecold.com
+#### @color[orange](dbafromthecold@gmail.com)
+#### @color[brown](www.dbafromthecold.com)
 
 ---
 
