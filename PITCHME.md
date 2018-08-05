@@ -267,7 +267,7 @@ Reduce recovery time for “active” data
 
 <img src="assets/images/ShortStory.png" style="float: right;" size=medium border=none/>
 
-<align=center>## A quick story</align>
+<p align=center>## A quick story</p>
 
 ---
 
