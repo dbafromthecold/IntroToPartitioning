@@ -263,12 +263,11 @@ Reduce recovery time for “active” data
 
 ---
 
-
 @title[A quick story]
 
-## A quick story
+<img src="assets/images/ShortStory.png"  align=right size=medium/>
 
-<img src="assets/images/ShortStory.png"  align=center-right size=medium/>
+## A quick story
 
 ---
 
