@@ -100,9 +100,13 @@ Maps rows in the table to a partition
 
 ---?code=assets/code/CreatePartitionScheme.sql&lang=sql&title=Partition Scheme
 
+@[3](<b>@color[#fffdd0](ALL)</b> maps all partitions to one filegroup)
+
 Maps partitions to filegroups
 
 ---?code=assets/code/CreatePartitionedTable.sql&lang=sql&title=Partitioned Table
+
+@[7] Specify partition scheme & partitioning key instead of filegroup
 
 ---
 
