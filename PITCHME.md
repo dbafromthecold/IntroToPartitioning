@@ -188,6 +188,9 @@ SQL will move data to the new partition if the data crosses the new boundary val
 
 ---?code=assets/code/SplittingPartitions.sql&lang=sql&title=Splitting Partitions
 
+@[1-2](Specify which filgroup the new partition will reside on)
+@[4-5](Split out new partition based on value passed in)
+
 ---
 
 @title[Demo 3]
