@@ -286,10 +286,10 @@ Reduce recovery time for “active” data
 
 ### Resources
 
-https://github.com/dbafromthecold/IntroToPartitioning <br>
-https://dbafromthecold.com/2018/02/19/summary-of-my-partitioning-series/ <br> 
-https://docs.microsoft.com/en-us/sql/relational-databases/partitions/partitioned-tables-and-indexes <br> 
-https://technet.microsoft.com/en-us/library/ms187526(v=sql.105).aspx
+@size[0.6em](https://github.com/dbafromthecold/IntroToPartitioning) <br>
+@size[0.6em](https://dbafromthecold.com/2018/02/19/summary-of-my-partitioning-series/) <br> 
+@size[0.6em](https://docs.microsoft.com/en-us/sql/relational-databases/partitions/partitioned-tables-and-indexes) <br> 
+@size[0.6em](https://technet.microsoft.com/en-us/library/ms187526(v=sql.105).aspx)
 
 ---
 
