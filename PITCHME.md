@@ -15,6 +15,8 @@
 @fa[wordpress] www.dbafromthecold.com <br>
 @fa[github] github.com/dbafromthecold
 
+\#GroupByConf
+
 ---
 
 @title[Session Aim]
