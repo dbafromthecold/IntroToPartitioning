@@ -274,7 +274,9 @@ Reduce recovery time for “active” data
 
 @title[A quick story]
 
-<img src="assets/images/ShortStory.png" style="float: right;" size=medium border=none/>
+@snap[east]
+![STORY](assets/images/ShortStory.png)
+@snapend
 
 </br>
 </br>
