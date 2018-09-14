@@ -278,11 +278,9 @@ Reduce recovery time for “active” data
 ![STORY](assets/images/ShortStory.png)
 @snapend
 
-</br>
-</br>
-</br>
-</br>
+@snap[west]
 ## A quick story
+@snapend
 
 ---
 
