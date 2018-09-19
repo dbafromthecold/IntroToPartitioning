@@ -1,3 +1,5 @@
-Demo code for my Introduction to Partitioning session - SSMS running on windows
+### Code my my Introduction to Partitioning session - SSMS running on windows
 
-Slides can be accessed here: -  https://gitpitch.com/dbafromthecold/IntroToPartitioning#/
+Powerpoint presentation is included in the master branch, online presentaion can be found here: -
+<br>
+https://gitpitch.com/dbafromthecold/IntroToPartitioning#/
