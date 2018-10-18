@@ -12,7 +12,6 @@
 
 ---
 
-
 @title[About me]
 
 ## Andrew Pruski
@@ -23,8 +22,6 @@
 @fa[envelope] dbafromthecold@gmail.com <br>
 @fa[wordpress] www.dbafromthecold.com <br>
 @fa[github] github.com/dbafromthecold
-
-\#GroupByConf
 
 ---
 
