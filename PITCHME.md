@@ -4,11 +4,11 @@
 
 ---
 
-<img src="assets\images\SQLSatMadrid\SQLSatMadridSponsors.PNG">
+<img src="assets/images/SQLSatMadrid/SQLSatMadridSponsors.PNG">
 
 ---
 
-<img src="assets\images\SQLSatMadrid\SQLSatMadridInfo.PNG">
+<img src="assets/images/SQLSatMadrid/SQLSatMadridInfo.PNG">
 
 ---
 
