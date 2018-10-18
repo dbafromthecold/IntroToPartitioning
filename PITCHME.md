@@ -1,8 +1,17 @@
 @title[An Introduction to Partitioning]
 
-# An Introduction to Partitioning
+# Partitioning 101
 
 ---
+
+<img src="assets\images\SQLSatMadrid/SQLSatMadridSponsors.PNG">
+
+---
+
+<img src="aassets\images\SQLSatMadrid/SQLSatMadridInfo.PNG">
+
+---
+
 
 @title[About me]
 
