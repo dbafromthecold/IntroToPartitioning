@@ -114,7 +114,7 @@ Maps partitions to filegroups
 
 ---?code=assets/code/CreatePartitionedTable.sql&lang=sql&title=Partitioned Table
 
-@[7] Specify partition scheme & partitioning key instead of filegroup
+@[6] Specify partition scheme & partitioning key instead of filegroup
 
 ---
 

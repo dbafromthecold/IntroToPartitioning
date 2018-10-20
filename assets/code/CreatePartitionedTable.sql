@@ -1,7 +1,6 @@
 CREATE TABLE dbo.PartitionedTable
-	(ColA INT IDENTITY(1,1),
+	(ID INT IDENTITY(1,1),
+	 ColA VARCHAR(10),
 	 ColB VARCHAR(10),
-	 ColC VARCHAR(10),
-	 ColD VARCHAR(10),
-	 PartitioningKey DATE)
-ON PartitionScheme(PartitioningKey);
+	 CreatedDate DATE)
+ON PartitionScheme(CreatedDate);
