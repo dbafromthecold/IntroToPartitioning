@@ -4,14 +4,6 @@
 
 ---
 
-<img src="assets/images/SQLSatMadrid/SQLSatMadridSponsors.PNG">
-
----
-
-<img src="assets/images/SQLSatMadrid/SQLSatMadridInfo.PNG">
-
----
-
 @title[About me]
 
 ## Andrew Pruski
