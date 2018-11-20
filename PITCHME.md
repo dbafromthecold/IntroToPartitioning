@@ -1,6 +1,6 @@
 @title[An Introduction to Partitioning]
 
-# Partitioning 101
+# An Introduction to Partitioning
 
 ---
 
